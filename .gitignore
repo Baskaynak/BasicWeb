@@ -1,0 +1,46 @@
+## .NET Core (ASP.NET Core) İçin Standart GitIgnore
+
+# Derleme Çıktıları (Build Artifacts)
+[Bin]
+[bin]
+[Obj]
+[obj]
+bin/
+obj/
+
+# Kullanıcıya Özel Ayarlar ve Geçici Dosyalar
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Yayınlama (Publish) Klasörü
+publish/
+**/publish/
+
+# NuGet Paketleri
+# (Genellikle paketler repo yerine restore komutuyla indirilir)
+packages/
+*.nupkg
+## NuGet paketlerinin otomatik restore edilmesi için:
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Azure ve Local Publish Dosyaları
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+# İşletim Sistemi Dosyaları
+.DS_Store
+Thumbs.db
+
+# Log Dosyaları
+*.log
+
+# Geliştirme Ortamı Gizli Dosyaları (secrets.json)
+# (Azure'da ve GitHub Actions'ta secret kullandığımız için local'dekiler gitmemeli)
+appsettings.Development.json
+UserSecrets/
