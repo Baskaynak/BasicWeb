@@ -2,7 +2,7 @@ name: .NET Core Azure Deploy
 
 on:
   push:
-    branches: [ "main" ] # Kodu 'main' branch'ine gönderdiğinde çalışır
+    branches: [ "master" ] # Kodu 'main' branch'ine gönderdiğinde çalışır
 
 jobs:
   build-and-deploy:
