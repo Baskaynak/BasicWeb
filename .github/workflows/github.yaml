@@ -2,7 +2,7 @@ name: .NET 10 Azure Deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
@@ -17,13 +17,12 @@ jobs:
         dotnet-version: '10.0.x'
 
     - name: dotnet publish
-      # --self-contained true: .NET 10'u paketin içine gömer.
-      # -r linux-x64: Azure Linux olduğu için hedef sistemi belirtiyoruz.
-      run: dotnet publish BasicWeb.csproj -c Release -r linux-x64 --self-contained true -o ./publish
+      # BasicWeb10 klasöründeki projeyi derleyip içine .NET 10'u paketler
+      run: dotnet publish BasicWeb10/BasicWeb10.csproj -c Release -r linux-x64 --self-contained true -o ./publish
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
-        app-name: 'BasicWeb'
+        app-name: 'BasicWeb' # Burası Azure'daki App Service adınla (BasicWeb) aynı olmalı
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
