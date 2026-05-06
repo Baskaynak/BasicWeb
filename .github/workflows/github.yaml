@@ -1,0 +1,27 @@
+name: .NET Core Azure Deploy
+
+on:
+  push:
+    branches: [ "main" ] # Kodu 'main' branch'ine gönderdiğinde çalışır
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ./publish
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: 'BasicWeb' # Ekran görüntüsündeki uygulama adın
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ./publish
