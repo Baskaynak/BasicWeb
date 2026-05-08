@@ -44,6 +44,15 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
 
+    
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'subaskaynak07'
+    appType: 'webAppLinux'
+    WebAppName: 'susiko'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    DeploymentTypeLinux: 'zipDeploy'
 
 
 
